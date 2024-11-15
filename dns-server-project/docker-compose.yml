@@ -1,0 +1,21 @@
+services:
+  host-pc:
+    build: ubuntu-host
+    tty: true
+    networks:
+      netmg-ex2-net:
+        ipv4_address: 10.0.0.2
+  host-dns:
+    build: dns-server
+    ports:
+      - "53:53"
+    tty: true
+    networks:
+      netmg-ex2-net:
+        ipv4_address: 10.0.0.3
+
+networks:
+  netmg-ex2-net:
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24

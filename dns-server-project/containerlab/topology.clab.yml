@@ -1,0 +1,22 @@
+name: my-topology
+
+topology:
+  nodes:
+    host1:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+    host2:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+    srl1:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.7.2
+    srl2:
+      kind: nokia_srlinux
+      image: ghcr.io/nokia/srlinux:24.7.2
+
+  links:
+    - endpoints: ["host1:eth1", "srl1:ethernet-1/1"]
+    - endpoints: ["srl1:ethernet-1/2", "srl2:ethernet-1/1"]
+    - endpoints: ["srl2:ethernet-1/2", "host2:eth1"]
+
